@@ -82,13 +82,6 @@ python seed_data.py</pre>
 #### API Base URL: http://127.0.0.1:8000
 #### Swagger Docs: http://127.0.0.1:8000/docs
 
-### 🧪 Running Tests
-#### Make sure the app is not running while running tests, since test cases create their own instance:
-<pre>
-  pytest tests/test_classes.py
-  pytest tests/test_booking.py
-</pre>
-
 ### 📬 API Endpoints
 #### GET /classes/
   * Description: List all fitness classes.
@@ -109,6 +102,15 @@ Request Example:
 
   * Success: 201 Created
   * Failure: 400, 404, or 422
+
+    
+### 🧪 Running Tests
+#### Make sure the app is not running while running tests, since test cases create their own instance:
+<pre>
+  pytest tests/test_classes.py
+  pytest tests/test_booking.py
+</pre>
+
 
 ### 🧰 Technologies Used
   * FastAPI    -- Supports asynchronous programming
