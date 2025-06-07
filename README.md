@@ -114,9 +114,9 @@ Request Example:
   * FastAPI    -- Supports asynchronous programming
   * SQLAlchemy -- ORM
   * SQLite     -- Database 
-  * Pydantic   -- data validation
-  * Pytest     -- testing
-  * HTTPX (for async API testing)
+  * Pydantic   -- Data validation
+  * Pytest     -- Unit Testing
+  * HTTPX      -- For async API testing
 
 ### 📬 Contact
 For any questions, suggestions, or feedback, feel free to open an issue or reach out.
