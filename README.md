@@ -15,4 +15,34 @@ This is a FastAPI-based backend application for managing fitness class bookings.
 ---
 
 ## 📁 Project Structure
+<pre lang="markdown">
+
+fitness_api/
+  ├──app/
+            ├──__init__.py
+            ├──repositories/
+                         ├──__init__.py
+                         ├──booking_repo.py
+            ├──routes/
+                         ├──__init__.py
+                         ├──bookings.py
+                         ├──classes.py
+             ├──services/
+                          ├──__init__.py
+                          ├──booking_service.py
+             ├──database.py
+             ├──logger.py
+             ├──main.py
+             ├──schemas.py
+             ├──models.py
+    ├──tests/
+             ├──test_classes.py
+             ├──test_booking.py
+    ├──run.py
+    ├──seed_data.py
+    ├──requirements.txt
+    ├──.gitignore
+    ├──.env
+    ├──README.md
+</pre>
 
