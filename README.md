@@ -46,3 +46,21 @@ fitness_api/
     ├──README.md
 </pre>
 
+
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+
+git clone https://github.com/sivaranjini005/fitness_api.git
+cd fitness_api
+
+### 2. Create and Activate Virtual Environment
+
+```python -m venv venv
+venv\Scripts\activate  # On Windows
+# or on macOS/Linux
+# source venv/bin/activate
