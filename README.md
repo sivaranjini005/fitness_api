@@ -54,13 +54,69 @@ fitness_api/
 
 ### 1. Clone the Repository
 
-
+<pre>
 git clone https://github.com/sivaranjini005/fitness_api.git
-cd fitness_api
+cd fitness_api</pre>
 
 ### 2. Create and Activate Virtual Environment
 
-```python -m venv venv
+<pre>python -m venv venv
 venv\Scripts\activate  # On Windows
 # or on macOS/Linux
-# source venv/bin/activate
+# source venv/bin/activate</pre>
+
+### 3. Install Dependencies
+<pre>
+pip install -r requirements.txt</pre>
+
+### 🌱 Seeding the Database
+#### To insert sample classes into the database:
+<pre>
+python seed_data.py</pre>
+
+### 🚀 Run the Application
+<pre>
+  uvicorn app.main:app --reload
+</pre>
+
+#### API Base URL: http://127.0.0.1:8000
+#### Swagger Docs: http://127.0.0.1:8000/docs
+
+### 🧪 Running Tests
+#### Make sure the app is not running while running tests, since test cases create their own instance:
+<pre>
+  pytest tests/test_classes.py
+  pytest tests/test_booking.py
+</pre>
+
+### 📬 API Endpoints
+#### GET /classes/
+  * Description: List all fitness classes.
+  * Response: JSON array with class info.
+
+#### POST /bookings/book/
+
+  * Description: Book a class using name, email and class ID.
+
+Request Example:
+<pre>
+  {
+  "client_name": "User"
+  "client_email": "user@gmail.com",
+  "class_id": 1
+}
+</pre>
+
+  * Success: 201 Created
+  * Failure: 400, 404, or 422
+
+### 🧰 Technologies Used
+  * FastAPI    -- Supports asynchronous programming
+  * SQLAlchemy -- ORM
+  * SQLite     -- Database 
+  * Pydantic   -- data validation
+  * Pytest     -- testing
+  * HTTPX (for async API testing)
+
+### 📬 Contact
+For any questions, suggestions, or feedback, feel free to open an issue or reach out.
