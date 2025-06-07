@@ -41,6 +41,7 @@ fitness_api/
     ├──run.py
     ├──seed_data.py
     ├──requirements.txt
+    ├──create_tables.py
     ├──.gitignore
     ├──.env
     ├──README.md
