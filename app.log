@@ -1,0 +1,51 @@
+2025-06-06 14:54:15,000 | INFO | BEGIN (implicit)
+2025-06-06 14:54:15,000 | INFO | SELECT classes.id, classes.name, classes.instructor, classes.start_time, classes.available_slots 
+FROM classes ORDER BY classes.start_time
+2025-06-06 14:54:15,000 | INFO | [generated in 0.00048s] ()
+2025-06-06 14:54:15,000 | INFO | ROLLBACK
+2025-06-06 14:54:42,333 | INFO | BEGIN (implicit)
+2025-06-06 14:54:42,334 | INFO | SELECT classes.id, classes.name, classes.instructor, classes.start_time, classes.available_slots 
+FROM classes ORDER BY classes.start_time
+2025-06-06 14:54:42,334 | INFO | [cached since 27.33s ago] ()
+2025-06-06 14:54:42,334 | INFO | ROLLBACK
+2025-06-06 14:55:00,823 | INFO | Booking request received: class_id=1, email=user@example.com
+2025-06-06 14:55:00,823 | INFO | BEGIN (implicit)
+2025-06-06 14:55:00,834 | INFO | SELECT classes.id, classes.name, classes.instructor, classes.start_time, classes.available_slots 
+FROM classes 
+WHERE classes.id = ?
+2025-06-06 14:55:00,834 | INFO | [generated in 0.00067s] (1,)
+2025-06-06 14:55:00,839 | INFO | UPDATE classes SET available_slots=? WHERE classes.id = ?
+2025-06-06 14:55:00,839 | INFO | [generated in 0.00040s] (1, 1)
+2025-06-06 14:55:00,871 | INFO | INSERT INTO bookings (client_name, client_email, class_id) VALUES (?, ?, ?) RETURNING id, booked_at
+2025-06-06 14:55:00,871 | INFO | [generated in 0.00044s] ('new', 'user@example.com', 1)
+2025-06-06 14:55:00,871 | INFO | COMMIT
+2025-06-06 14:55:00,951 | INFO | BEGIN (implicit)
+2025-06-06 14:55:00,951 | INFO | SELECT bookings.id, bookings.client_name, bookings.client_email, bookings.class_id, bookings.booked_at 
+FROM bookings 
+WHERE bookings.id = ?
+2025-06-06 14:55:00,951 | INFO | [generated in 0.00055s] (1,)
+2025-06-06 14:55:00,951 | INFO | Booking successful: booking_id=1
+2025-06-06 14:55:00,951 | INFO | ROLLBACK
+2025-06-06 14:55:22,480 | INFO | Fetching bookings for email: user@example.com
+2025-06-06 14:55:22,480 | INFO | BEGIN (implicit)
+2025-06-06 14:55:22,480 | INFO | SELECT bookings.id, bookings.client_name, bookings.client_email, bookings.class_id, bookings.booked_at 
+FROM bookings 
+WHERE bookings.client_email = ?
+2025-06-06 14:55:22,480 | INFO | [generated in 0.00042s] ('user@example.com',)
+2025-06-06 14:55:22,480 | INFO | Total bookings found: 1 for user@example.com
+2025-06-06 14:55:22,480 | INFO | ROLLBACK
+2025-06-06 20:31:39,654 | INFO | BEGIN (implicit)
+2025-06-06 20:31:39,671 | INFO | SELECT classes.id, classes.name, classes.instructor, classes.start_time, classes.available_slots 
+FROM classes ORDER BY classes.start_time
+2025-06-06 20:31:39,671 | INFO | [generated in 0.00053s] ()
+2025-06-06 20:31:39,671 | INFO | ROLLBACK
+2025-06-06 21:48:44,151 | INFO | BEGIN (implicit)
+2025-06-06 21:48:44,167 | INFO | SELECT classes.id, classes.name, classes.instructor, classes.start_time, classes.available_slots 
+FROM classes ORDER BY classes.start_time
+2025-06-06 21:48:44,168 | INFO | [generated in 0.00229s] ()
+2025-06-06 21:48:44,168 | INFO | ROLLBACK
+2025-06-06 21:53:41,946 | INFO | BEGIN (implicit)
+2025-06-06 21:53:41,958 | INFO | SELECT classes.id, classes.name, classes.instructor, classes.start_time, classes.available_slots 
+FROM classes ORDER BY classes.start_time
+2025-06-06 21:53:41,958 | INFO | [generated in 0.00125s] ()
+2025-06-06 21:53:41,966 | INFO | ROLLBACK
