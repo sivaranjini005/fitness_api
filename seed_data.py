@@ -48,7 +48,7 @@ async def seed_classes():
                     name="Yoga",
                     instructor="Aarav",
                     start_time=get_ist_datetime(1, 9),  # Tomorrow 9 AM IST
-                    available_slots=10,
+                    available_slots=1,
                 ),
                 Class(
                     name="Zumba",
