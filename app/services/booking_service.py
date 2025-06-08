@@ -9,6 +9,22 @@ from typing import List
 async def create_booking(
     db: AsyncSession, class_id: int, client_name: str, client_email: str
 ) -> BookingResponse:
+    """
+    Create a new booking for a specified class if slots are available.
+
+    Args:
+        db (AsyncSession): The asynchronous database session.
+        class_id (int): The ID of the class to book.
+        client_name (str): The name of the client making the booking.
+        client_email (str): The email of the client making the booking.
+
+    Raises:
+        HTTPException: If the class does not exist (404).
+        HTTPException: If there are no available slots for the class (400).
+
+    Returns:
+        BookingResponse: The booking details including booking ID, class ID, client name, and email.
+    """
     stmt = select(Class).where(Class.id == class_id)
     result = await db.execute(stmt)
     cls = result.scalars().first()
@@ -42,6 +58,16 @@ async def create_booking(
 
 
 async def get_bookings_by_email(db: AsyncSession, email: str) -> List[BookingResponse]:
+    """
+    Retrieve all bookings associated with a given client email.
+
+    Args:
+        db (AsyncSession): The asynchronous database session.
+        email (str): The email address of the client whose bookings are to be fetched.
+
+    Returns:
+        List[BookingResponse]: A list of booking details matching the provided email.
+    """
     stmt = select(Booking).where(Booking.client_email == email)
     result = await db.execute(stmt)
     bookings = result.scalars().all()
