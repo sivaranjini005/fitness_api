@@ -8,6 +8,7 @@ from app.models import Class
 # Set IST timezone
 IST = pytz.timezone("Asia/Kolkata")
 
+
 def get_ist_datetime(days_from_now: int, hour: int) -> datetime:
     """
     Returns a timezone-aware datetime object in IST,
@@ -18,6 +19,7 @@ def get_ist_datetime(days_from_now: int, hour: int) -> datetime:
     ist_datetime = IST.localize(naive_datetime)
     return ist_datetime
 
+
 async def seed_classes():
     async with async_session() as session:
         class_data = [
@@ -25,25 +27,26 @@ async def seed_classes():
                 name="Yoga",
                 instructor="Aarav",
                 start_time=get_ist_datetime(1, 9),  # Tomorrow 9 AM IST
-                available_slots=10
+                available_slots=10,
             ),
             Class(
                 name="Zumba",
                 instructor="Meera",
                 start_time=get_ist_datetime(2, 7),  # Day after tomorrow 7 AM IST
-                available_slots=15
+                available_slots=15,
             ),
             Class(
                 name="HIIT",
                 instructor="Roshan",
                 start_time=get_ist_datetime(3, 6),  # 3 days from now 6 AM IST
-                available_slots=12
+                available_slots=12,
             ),
         ]
 
         session.add_all(class_data)
         await session.commit()
         print("Seed data inserted successfully.")
+
 
 if __name__ == "__main__":
     asyncio.run(seed_classes())

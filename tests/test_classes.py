@@ -1,6 +1,7 @@
 # tests/test_classes.py
 import sys
 import os
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import pytest
@@ -8,6 +9,7 @@ from httpx import AsyncClient
 from fastapi import status
 from app.main import app
 from httpx import ASGITransport
+
 
 @pytest.mark.asyncio
 async def test_get_classes():

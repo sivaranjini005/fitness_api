@@ -1,7 +1,8 @@
 from datetime import datetime
 from pydantic import BaseModel, EmailStr
 
-#this defines how client get response when accessing the classes
+
+# this defines how client get response when accessing the classes
 class ClassResponse(BaseModel):
     id: int
     name: str
@@ -13,7 +14,7 @@ class ClassResponse(BaseModel):
 
 
 class BookingRequest(BaseModel):
-    class_id:int
+    class_id: int
     client_name: str
     client_email: EmailStr
 
@@ -24,5 +25,3 @@ class BookingResponse(BookingRequest):
     id: int
 
     model_config = {"from_attributes": True}
-
-    

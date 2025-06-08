@@ -6,6 +6,7 @@ app = FastAPI()
 app.include_router(classes.router)
 app.include_router(bookings.router)
 
+
 # Optional root route
 @app.get("/")
 def root():

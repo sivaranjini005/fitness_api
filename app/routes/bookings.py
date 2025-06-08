@@ -5,12 +5,17 @@ from app.schemas import BookingRequest, BookingResponse
 from app.services import booking_service
 from app.logger import logger
 
-router = APIRouter(prefix='/bookings', tags=['bookings'])
+router = APIRouter(prefix="/bookings", tags=["bookings"])
 
-@router.post("/book/", response_model=BookingResponse, status_code=status.HTTP_201_CREATED)
+
+@router.post(
+    "/book/", response_model=BookingResponse, status_code=status.HTTP_201_CREATED
+)
 async def book_class(request: BookingRequest, db: AsyncSession = Depends(get_db)):
 
-    logger.info(f"Booking request received: class_id={request.class_id}, email={request.client_email}")
+    logger.info(
+        f"Booking request received: class_id={request.class_id}, email={request.client_email}"
+    )
 
     try:
         booking = await booking_service.create_booking(
@@ -20,7 +25,7 @@ async def book_class(request: BookingRequest, db: AsyncSession = Depends(get_db)
         logger.info(f"Booking successful: booking_id={booking.id}")
 
         return booking
-    
+
     except HTTPException as e:
         logger.warning(f"Booking failed: {e.detail}")
         raise
@@ -39,6 +44,3 @@ async def get_bookings(email: str, db: AsyncSession = Depends(get_db)):
     except Exception as e:
         logger.error(f"Failed to fetch bookings for {email}: {str(e)}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
-
-
-
