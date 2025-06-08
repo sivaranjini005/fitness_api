@@ -20,9 +20,7 @@ This is a FastAPI-based backend application for managing fitness class bookings.
 fitness_api/
   ├──app/
             ├──__init__.py
-            ├──repositories/
-                         ├──__init__.py
-                         ├──booking_repo.py
+          
             ├──routes/
                          ├──__init__.py
                          ├──bookings.py
@@ -70,14 +68,16 @@ venv\Scripts\activate  # On Windows
 <pre>
 pip install -r requirements.txt</pre>
 
-### 🌱 Seeding the Database
-#### To insert sample classes into the database:
+### Steps to set up the application
+#### Create tables in database
+#### To insert sample classes into the database
 <pre>
+python create_tables.py
 python seed_data.py</pre>
 
 ### 🚀 Run the Application
 <pre>
-  uvicorn app.main:app --reload
+  python run.py
 </pre>
 
 #### API Base URL: http://127.0.0.1:8000
@@ -105,7 +105,7 @@ Request Example:
   * Failure: 400, 404, or 422
 
     
-### 🧪 Running Tests
+###  Running Tests
 #### Make sure the app is not running while running tests, since test cases create their own instance:
 <pre>
   pytest tests/test_classes.py
