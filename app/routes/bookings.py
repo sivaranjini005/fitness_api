@@ -12,7 +12,19 @@ router = APIRouter(prefix="/bookings", tags=["bookings"])
     "/book/", response_model=BookingResponse, status_code=status.HTTP_201_CREATED
 )
 async def book_class(request: BookingRequest, db: AsyncSession = Depends(get_db)):
+    """
+    Book a class for a client.
 
+    Args:
+        request (BookingRequest): Booking request data including class ID, client name, and email.
+        db (AsyncSession): Database session dependency.
+
+    Returns:
+        BookingResponse: The created booking object.
+
+    Raises:
+        HTTPException: If the booking fails due to business logic or internal error.
+    """
     logger.info(
         f"Booking request received: class_id={request.class_id}, email={request.client_email}"
     )
@@ -36,6 +48,19 @@ async def book_class(request: BookingRequest, db: AsyncSession = Depends(get_db)
 
 @router.get("/", response_model=list[BookingResponse])
 async def get_bookings(email: str, db: AsyncSession = Depends(get_db)):
+    """
+    Retrieve all bookings for a given client email.
+
+    Args:
+        email (str): The client's email address to filter bookings.
+        db (AsyncSession): Database session dependency.
+
+    Returns:
+        list[BookingResponse]: A list of bookings associated with the provided email.
+
+    Raises:
+        HTTPException: If fetching bookings fails.
+    """
     logger.info(f"Fetching bookings for email: {email}")
     try:
         bookings = await booking_service.get_bookings_by_email(db, email)

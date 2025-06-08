@@ -1,27 +1,40 @@
+"""
+Database configuration and session management for the Fitness Studio Booking API.
+Uses SQLAlchemy's asynchronous engine and session maker.
+"""
+
 import os
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
-from sqlalchemy.orm import declarative_base
 from collections.abc import AsyncGenerator
 from dotenv import load_dotenv
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+from sqlalchemy.orm import declarative_base
 
-load_dotenv()  # ensure environment variables load first
+# Load environment variables from a .env file
+load_dotenv()
 
-# Get the database URL from .env
+# Get the database URL from environment or fallback to SQLite for development
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./fitness.db")
 
-# create the async engine
+# Create an asynchronous SQLAlchemy engine
 engine = create_async_engine(DATABASE_URL, echo=True)
 
-# creating async session factory
+# Define an asynchronous session factory
 async_session = async_sessionmaker(
-    bind=engine, expire_on_commit=False, class_=AsyncSession
+    bind=engine,
+    expire_on_commit=False,  # Avoids expiring objects after commit
+    class_=AsyncSession,
 )
 
-# Base class for database models
+# Declarative base class for models
 Base = declarative_base()
 
 
-# Dependency to get a session which is used later in routes
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    """
+    Dependency to provide a database session.
+
+    Yields:
+        AsyncSession: An active SQLAlchemy session for a request lifecycle.
+    """
     async with async_session() as session:
         yield session

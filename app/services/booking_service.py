@@ -1,4 +1,4 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, status
 from app.models import Booking, Class
 from app.schemas import BookingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -14,10 +14,14 @@ async def create_booking(
     cls = result.scalars().first()
 
     if not cls:
-        raise HTTPException(status_code=404, detail="Class not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Class not found"
+        )
 
     if cls.available_slots <= 0:
-        raise HTTPException(status_code=400, detail="No slots available")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="No slots available"
+        )
 
     # Create booking
     new_booking = Booking(
